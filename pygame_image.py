@@ -12,14 +12,28 @@ def main():
     kk_img2 = pg.transform.rotozoom(kk_img, 10, 1.0)
     
     tmr = 0
+  
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        screen.blit(bg_img, [0, 0])
+        tmr += 1
+        x = tmr%3200
+        screen.blit(bg_img, [-x, 0])
+        screen.blit(kk_img2, [1600-x, 0])
+        screen.blit(bg_img, [3200-x, 0])
+        if x % 100 >= 50:
+            screen.blit(kk_img, [300, 200])
+        else:
+            screen.blit(kk_img2, [300, 200])
+
         pg.display.update()
-        tmr += 1        
-        clock.tick(10)
+        clock.tick(100)
+
+
+
+
+
 
 
 if __name__ == "__main__":
